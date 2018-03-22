@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/swiper.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="js/swiper.css"/>
+		<script>
+		window.onload = window.onresize = function() {
+				var rem = document.documentElement.clientWidth;
+				document.documentElement.style.fontSize = rem * 100 / 1080 + "px";
+				
+				
+			}
+		</script>
+		<title></title>
+	</head>
+	<body>
+		<header class="head">
+			<span class="left">
+				<img src="img/jd_03.png">
+			</span>
+			<input type="text" placeholder="小米手机"/>
+			<span class="right">
+				<img src="img/jd_05.png">
+			</span>
+			<img src="img/jd_08.png" class="people">
+			<img src="img/jd_11.png" class="src">
+		</header>
+		<div class="empty"></div>
+		<div class="box">
+			<ul class="box1">
+				<!--<li>推荐分类</li>-->
+			</ul>
+			<div class="box2">
+				<img src="img/jd_18.png" class="banner"> 
+				<div class="title">
+					专场推荐
+				</div>
+				<div class="buy">
+					<div class="buy-1">
+						<img src="img/jd_22.png">
+						<p>元宵汤圆超级单品日</p>
+					</div>
+				</div>
+				
+				<div class="title-2">
+					<span class="left">
+						热门推荐
+					</span>
+					<span class="right">
+						<img src="img/jd_0223(3).png" class="one">  
+						热销榜      
+						<img src="img/jd_0223(2).png" class="two">
+					</span>
+				</div>
+				
+				<div class="phone">
+					<!--<div>
+						<img src="img/jd_26.png">
+					手机
+					</div>-->
+					
+				</div>
+			</div> 
+		</div>
+		<div class="empty2"></div>
+		<div class="foot">
+			<div>
+				<img src="img/jd_30.png">
+				首页
+			</div>
+			<div>
+				<img src="img/jd_30.png">
+				首页
+			</div>
+			<div>
+				<img src="img/jd_30.png">
+				首页
+			</div>
+			<div>
+				<img src="img/jd_30.png">
+				首页
+			</div>
+			<div>
+				<img src="img/jd_30.png">
+				首页
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script>
+		$.ajax({
+			type:"get",
+			url:"list.json",
+			async:true,
+			success:function(data){
+				for(var i=0;i<data.list.length;i++){
+					var li1=$("<li>"+data.list[i].name+"</li>");
+					$(".box1").append(li1);
+				}
+			}
+		});
+		
+		$.ajax({
+			type:"get",
+			url:"buy.json",
+			async:true,
+			success:function(data){
+				for(var i=0;i<data.buy.length;i++){
+					var div1=$("<div><img src="+data.buy[i].src+">"+data.buy[i].name+"</div>");
+					$(".phone").append(div1);
+				}
+			}
+		});
+	</script>
+</html>
